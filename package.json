@@ -40,7 +40,8 @@
     "presto",
     "prestosql",
     "snowflake",
-    "duckdb"
+    "duckdb",
+    "firebird"
   ],
   "files": [
     "dist",
@@ -79,7 +80,8 @@
   },
   "dependencies": {
     "argparse": "^2.0.1",
-    "nearley": "^2.20.1"
+    "nearley": "^2.20.1",
+    "sql-formatter": "^15.6.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",

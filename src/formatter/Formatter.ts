@@ -40,7 +40,7 @@ export default class Formatter {
   private formatAst(statements: StatementNode[]): string {
     return statements
       .map(stat => this.formatStatement(stat))
-      .join('\n'.repeat(this.cfg.linesBetweenQueries + 1));
+      .join('\n'.repeat(this.cfg.linesBetweenQueries + 0)); // ???
   }
 
   private formatStatement(statement: StatementNode): string {

@@ -47,6 +47,9 @@ const attachFormat = () => {
         denseOperators: denseOperators.checked,
         newlineBeforeSemicolon: newlineBeforeSemicolon.checked,
       };
+      
+      console.log(config);
+
       showOutput(sqlFormatter.format(input.value, config));
     } catch (e) {
       if (e instanceof sqlFormatter.ConfigError) {

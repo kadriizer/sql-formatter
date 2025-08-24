@@ -26,6 +26,7 @@ const dialectNameMap: Record<keyof typeof allDialects | 'tsql', keyof typeof all
   tsql: 'transactsql', // alias for transactsq
   singlestoredb: 'singlestoredb',
   snowflake: 'snowflake',
+  firebird: 'firebird'
 };
 
 export const supportedDialects = Object.keys(dialectNameMap);
@@ -63,6 +64,7 @@ const defaultOptions: FormatOptions = {
  */
 export const format = (query: string, cfg: FormatOptionsWithLanguage = {}): string => {
   if (typeof cfg.language === 'string' && !supportedDialects.includes(cfg.language)) {
+    console.log(cfg.language, supportedDialects);
     throw new ConfigError(`Unsupported SQL dialect: ${cfg.language}`);
   }
 

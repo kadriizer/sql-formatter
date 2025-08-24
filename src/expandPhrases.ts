@@ -27,7 +27,7 @@ export const expandPhrases = (phrases: string[]): string[] => phrases.flatMap(ex
  *       "FOR OF UNIQUE TABLES",
  *       "FOR OF MANDATORY TABLES" ]
  */
-export const expandSinglePhrase = (phrase: string): string[] =>
+export const expandSinglePhrase = (phrase: string): string[] =>  
   buildCombinations(parsePhrase(phrase)).map(stripExtraWhitespace);
 
 const stripExtraWhitespace = (text: string) => text.replace(/ +/g, ' ').trim();
@@ -95,7 +95,7 @@ const parseTerm = (text: string, index: number): [Phrase, number] => {
     let word = '';
     while (text[index] && /[A-Za-z0-9_ ]/.test(text[index])) {
       word += text[index];
-      index++;
+      index++;      
     }
     return [word, index];
   }
