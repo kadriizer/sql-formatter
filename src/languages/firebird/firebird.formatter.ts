@@ -5,46 +5,22 @@ import { dataTypes, keywords } from './firebird.keywords.js';
 
 const reservedSelect = expandPhrases(['[FOR] SELECT [FIRST 0 | DISTINCT]']);
 
-const reservedClauses = expandPhrases([
+const reservedClauses = expandPhrases([  
   'FROM',
   'WHERE',
   'GROUP BY',
   'HAVING',
   'ORDER BY',
   'ROWS',
-  'SKIP',
-  'PLAN',
-  'RETURNS',
-  'AS',
   'DO',
-  'BEGIN',
-  'END',
-  'WHEN',
-  'EXECUTE STATEMENT',
-  'INTO'
+  'INTO',
 ]);
 
-const reservedSetOperations = expandPhrases(['UNION [ALL]']);
+const reservedSetOperations = expandPhrases([]);
 
-const reservedJoins = expandPhrases([
-  /* 'JOIN',
-  '{LEFT | RIGHT | FULL} [OUTER] JOIN',
-  '{INNER | CROSS} JOIN',
-  '[INNER] JOIN',
-  '{LEFT | RIGHT | FULL} [OUTER] JOIN' */
-]);
+const reservedJoins = expandPhrases([]);
 
-const reservedPhrases = expandPhrases([
-  /* 'ON {UPDATE | DELETE} [SET NULL | SET DEFAULT]',
-  'RETURNS',
-  'AS',
-  'BEGIN',
-  'END',
-  'WHEN ANY DO',
-  'EXECUTE STATEMENT',
-  'SUSPEND',
-  'DECLARE VARIABLE' */
-]);
+const reservedPhrases = expandPhrases([]);
 
 export const firebird: DialectOptions = {
   name: 'firebird',
@@ -57,7 +33,7 @@ export const firebird: DialectOptions = {
     reservedKeywords: keywords,
     reservedDataTypes: dataTypes,
     reservedFunctionNames: functions,
-    stringTypes: ["''-qq",],
+    stringTypes: ["''-qq"],
     identTypes: [`""-qq`],
     paramTypes: { named: [':'] },
     operators: ['=', '<', '>', '<=', '>=', '<>', '||'],
@@ -65,6 +41,6 @@ export const firebird: DialectOptions = {
     nestedBlockComments: true,
   },
   formatOptions: {
-    onelineClauses: [],    
+    onelineClauses: [],
   },
 };

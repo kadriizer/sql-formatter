@@ -33,6 +33,7 @@ const attachFormat = () => {
     try {
       const config = {
         language: language.options[language.selectedIndex].value,
+        paramTypes: { named: [':'] },
         tabWidth: tabWidth.value,
         useTabs: useTabs.checked,
         keywordCase: keywordCase.options[keywordCase.selectedIndex].value,
@@ -47,7 +48,7 @@ const attachFormat = () => {
         denseOperators: denseOperators.checked,
         newlineBeforeSemicolon: newlineBeforeSemicolon.checked,
       };
-      
+
       console.log(config);
 
       showOutput(sqlFormatter.format(input.value, config));

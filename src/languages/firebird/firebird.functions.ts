@@ -61,5 +61,5 @@ export const functions: string[] = [
   'CURRENT_USER',
   'CURRENT_ROLE',
   'CURRENT_CONNECTION',
-  'CURRENT_TRANSACTION'
+  'CURRENT_TRANSACTION',
 ];

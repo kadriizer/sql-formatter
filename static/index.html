@@ -55,6 +55,7 @@
           <article class="config">
             <label for="language">Language:</label>
             <select id="language">
+              <option value="tsql">Transact-SQL</option>
               <option value="sql">SQL</option>
               <!-- dialects -->
               <option value="redshift">AWS Redshift</option>
@@ -72,26 +73,24 @@
               <option value="singlestoredb">SingleStoreDB</option>
               <option value="snowflake">Snowflake</option>
               <option value="spark">Spark</option>
-              <option value="sqlite">SQLite</option>
-              <option value="tsql">Transact-SQL</option>
-              <option value="trino">Trino</option>
-              <option value="firebird">Firebird</option>
+              <option value="sqlite">SQLite</option>              
+              <option value="trino">Trino</option>              
             </select>
           </article>
           <article class="config">
             <label for="keywordCase">Keyword case:</label>
             <select id="keywordCase">
-              <option value="preserve">Preserve</option>
-              <option value="upper">Upper</option>
               <option value="lower">Lower</option>
+              <option value="preserve">Preserve</option>
+              <option value="upper">Upper</option>              
             </select>
           </article>
           <article class="config">
             <label for="dataTypeCase">Data type case:</label>
             <select id="dataTypeCase">
-              <option value="preserve">Preserve</option>
-              <option value="upper">Upper</option>
               <option value="lower">Lower</option>
+              <option value="preserve">Preserve</option>
+              <option value="upper">Upper</option>              
             </select>
           </article>
           <article class="config">
@@ -160,11 +159,62 @@
       <div class="staging">
         <section class="input">
           <textarea id="input" autofocus wrap="off">
-select supplier_name,city from
-(select * from suppliers join addresses on suppliers.address_id=addresses.id)
-as suppliers
-where supplier_id>500
-order by supplier_name asc,city desc;</textarea
+CREATE OR ALTER PROCEDURE OZEL_PRIM_BUL(
+SUBE SMALLINT,
+TARIH DATE,
+OZELCARI VARCHAR(20),
+UYRUK VARCHAR(15) = null)
+RETURNS (
+KOD VARCHAR(20),
+ADI VARCHAR(50),
+ORAN DOUBLE PRECISION) AS
+begin
+  if (exists(select
+                 P.SIRANO
+             from CARI_OZEL_PRIM P
+             inner join CARI C on P.CARIKOD = C.KOD
+             where SUBEKOD = :SUBE and
+                   BASLANGIC <= :TARIH and
+                   BITIS >= :TARIH and
+                   P.KOD = :OZELCARI and
+                   P.UYRUK = :UYRUK)) then
+    /* uyruk girişi yapılmış prim varsa ... */
+    for select
+            P.CARIKOD KOD,
+            C.ADI,
+            P.ORAN
+        from CARI_OZEL_PRIM P
+        inner join CARI C on P.CARIKOD = C.KOD
+        where SUBEKOD = :SUBE and
+              BASLANGIC <= :TARIH and
+              BITIS >= :TARIH and
+              P.KOD = :OZELCARI and
+              P.UYRUK = :UYRUK
+        into :KOD, :ADI, :ORAN
+    do
+    begin
+      suspend;
+    end
+  else
+    /* ... yoksa! */
+    for select
+            P.CARIKOD KOD,
+            C.ADI,
+            P.ORAN
+        from CARI_OZEL_PRIM P
+        inner join CARI C on P.CARIKOD = C.KOD
+        where SUBEKOD = :SUBE and
+              BASLANGIC <= :TARIH and
+              BITIS >= :TARIH and
+              P.KOD = :OZELCARI and
+              P.UYRUK is null
+        into :KOD, :ADI, :ORAN
+    do
+    begin
+      suspend;
+    end
+end
+</textarea
           >
         </section>
         <section class="output">

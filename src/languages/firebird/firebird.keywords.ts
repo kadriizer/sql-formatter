@@ -180,7 +180,7 @@ export const keywords: string[] = [
   'WHILE',
   'WITH',
   'WORK',
-  'YEAR'
+  'YEAR',
 ];
 
 export const dataTypes: string[] = [
@@ -196,5 +196,5 @@ export const dataTypes: string[] = [
   'SMALLINT',
   'TIME',
   'TIMESTAMP',
-  'VARCHAR'
+  'VARCHAR',
 ];

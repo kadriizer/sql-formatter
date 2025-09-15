@@ -81,7 +81,7 @@
   "dependencies": {
     "argparse": "^2.0.1",
     "nearley": "^2.20.1",
-    "sql-formatter": "^15.6.6"
+    "sql-formatter": "^15.6.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",

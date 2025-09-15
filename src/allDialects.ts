@@ -17,4 +17,4 @@ export { trino } from './languages/trino/trino.formatter.js';
 export { transactsql } from './languages/transactsql/transactsql.formatter.js';
 export { singlestoredb } from './languages/singlestoredb/singlestoredb.formatter.js';
 export { snowflake } from './languages/snowflake/snowflake.formatter.js';
-export { firebird } from './languages/firebird/firebird.formatter.js'
+export { firebird } from './languages/firebird/firebird.formatter.js';
